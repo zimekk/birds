@@ -1,16 +1,34 @@
 {
+  "name": "birds",
   "private": true,
+  "packageManager": "pnpm@8.15.6",
+  "repository": "https://github.com/zimekk/hello.git",
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "lint-staged": {
+    "*.{json,js,jsx,md,scss,ts,tsx,css,yml,yaml}": "prettier --write"
+  },
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev",
     "lint": "turbo run lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "clean": "turbo run clean",
+    "reset": "pnpm store prune && rm -rf node_modules apps/*/node_modules packages/*/node_modules",
+    "update:dedupe": "pnpm dedupe",
+    "update:latest": "pnpm update --interactive --latest --recursive",
+    "prepare": "husky && turbo telemetry disable"
   },
   "devDependencies": {
+    "@commitlint/cli": "^19.8.0",
+    "@commitlint/config-conventional": "^19.8.0",
     "eslint": "^8.57.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.5.0",
     "prettier": "^3.2.5",
     "turbo": "^2.4.4"
-  },
-  "packageManager": "pnpm@8.15.6",
-  "name": "with-vite"
+  }
 }
