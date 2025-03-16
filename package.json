@@ -9,13 +9,13 @@
     ]
   },
   "lint-staged": {
-    "*.{json,js,jsx,md,scss,ts,tsx,css,yml,yaml}": "prettier --write"
+    "*.{html,json,js,jsx,md,scss,ts,tsx,css,yml,yaml}": "prettier --write"
   },
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev",
     "lint": "turbo run lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "format": "prettier --write \"**/*.{html,ts,tsx,md}\"",
     "clean": "turbo run clean",
     "reset": "pnpm store prune && rm -rf node_modules apps/*/node_modules packages/*/node_modules",
     "update:dedupe": "pnpm dedupe",
