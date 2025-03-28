@@ -33,10 +33,41 @@
   }
 }
 
-.card {
-  padding: 2em;
+.hero {
+  text-align: center;
 }
 
-.read-the-docs {
-  color: #888;
+.webcam {
+  display: flex;
+  flex: 1;
+}
+
+.webcam canvas {
+  flex: 1;
+}
+
+.predictions {
+  position: absolute;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  font-size: 1.2em;
+  line-height: 1.1;
+}
+
+.prediction {
+  display: flex;
+  flex-basis: 100%;
+  background: white;
+  margin: 0.25em;
+  padding: 0 0.25em;
+  border: 1px solid currentColor;
+  text-align: center;
+  opacity: 0.2;
+  will-change: opacity;
+  transition: opacity 100ms;
+}
+
+.prediction.positive {
+  opacity: 0.8;
 }

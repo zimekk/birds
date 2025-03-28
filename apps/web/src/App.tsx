@@ -5,7 +5,7 @@ import "./App.css";
 import * as tmImage from "@teachablemachine/image";
 
 export default function App() {
-  const [count, setCount] = useState(0);
+  const [started, setStarted] = useState(false);
   const [prediction, setPrediction] = useState<
     {
       className: string;
@@ -16,6 +16,8 @@ export default function App() {
   const refWebcam = useRef<HTMLDivElement | null>(null);
 
   const onStart = useCallback(() => {
+    setStarted(true);
+
     // More API functions here:
     // https://github.com/googlecreativelab/teachablemachine-community/tree/master/libraries/image
 
@@ -42,7 +44,8 @@ export default function App() {
 
       // Convenience function to setup a webcam
       const flip = false; // whether to flip the webcam
-      webcam = new tmImage.Webcam(200, 200, flip); // width, height, flip
+      const { innerWidth: width, innerHeight: height } = window;
+      webcam = new tmImage.Webcam(width, height, flip); // width, height, flip
       await webcam.setup({
         facingMode: "environment",
       }); // request access to the webcam
@@ -79,35 +82,28 @@ export default function App() {
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-      <div>Teachable Machine Image Model</div>
-      <div ref={refWebcam}></div>
+      <div ref={refWebcam} className="webcam"></div>
       {prediction.length > 0 ? (
-        <div>
+        <div className="predictions">
           {prediction.map(({ className, probability }, index) => (
-            <div key={index}>{`${className}: ${probability.toFixed(2)}`}</div>
+            <div
+              key={index}
+              className={["prediction"]
+                .concat(probability > 0.75 ? ["positive"] : [])
+                .join(" ")}
+            >{`${className}: ${probability.toFixed(2)}`}</div>
           ))}
         </div>
       ) : (
-        <button type="button" onClick={onStart}>
-          Start
-        </button>
+        <div className="hero">
+          <div>
+            <img src={viteLogo} className="logo" alt="Vite logo" />
+          </div>
+          <h1>Teachable Machine Image Model</h1>
+          <button type="button" disabled={started} onClick={onStart}>
+            {started ? "Loading..." : "Start"}
+          </button>
+        </div>
       )}
     </>
   );
