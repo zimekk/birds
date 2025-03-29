@@ -6,6 +6,7 @@ import * as tmImage from "@teachablemachine/image";
 
 export default function App() {
   const [started, setStarted] = useState(false);
+  const [selected, setSelected] = useState("");
   const [prediction, setPrediction] = useState<
     {
       className: string;
@@ -80,31 +81,92 @@ export default function App() {
     init();
   }, []);
 
+  // return null;
+
   return (
     <>
       <div ref={refWebcam} className="webcam"></div>
-      {prediction.length > 0 ? (
-        <div className="predictions">
-          {prediction.map(({ className, probability }, index) => (
-            <div
-              key={index}
-              className={["prediction"]
-                .concat(probability > 0.75 ? ["positive"] : [])
-                .join(" ")}
-            >{`${className}: ${probability.toFixed(2)}`}</div>
-          ))}
-        </div>
-      ) : (
-        <div className="hero">
-          <div>
-            <img src={viteLogo} className="logo" alt="Vite logo" />
+      <div className="container">
+        {prediction.length > 0 ? (
+          <>
+            <div className="predictions">
+              {prediction.map(({ className, probability }, index) => (
+                <button
+                  key={index}
+                  className={["prediction"]
+                    .concat(probability > 0.75 ? ["positive"] : [])
+                    .join(" ")}
+                  onClick={() => setSelected(className)}
+                >{`${className}: ${(100 * probability).toFixed()}%`}</button>
+              ))}
+            </div>
+            {selected !== "" && (
+              <div className="description">
+                <button className="close" onClick={() => setSelected("")}>
+                  [x]
+                </button>
+                <h2>{selected}</h2>
+                {
+                  {
+                    Kaczka: (
+                      <article>
+                        <p>
+                          Kaczki są wszystkożerne, ale w ich jadłospisie
+                          przeważają głównie rośliny.
+                        </p>
+                        <p>
+                          Można dokarmiać je ziarnem, na przykład owsem,
+                          kukurydzą czy pszenicą i warzywami, takimi jak
+                          marchew, gotowane ziemniaki i kapusta.
+                        </p>
+                      </article>
+                    ),
+                    Gołąb: (
+                      <article>
+                        <p>Gołębie są wszystkożerne.</p>
+                        <p>
+                          Można dokarmiać je suchych ziarnem (t.j. groch,
+                          kukurydzę, słonecznik, proso, pszenicę, jęczmień,
+                          siemię itd.), łuskanym słonecznikiem, wszelkimi
+                          kaszami i surowymi płatkami owsianymi.
+                        </p>
+                      </article>
+                    ),
+                    Wrona: (
+                      <article>
+                        <p>Wrony są wszystkożerne.</p>
+                        <p>
+                          Można dokarmiać je niesolonymi orzechami, ziarnami,
+                          owocami, a także kawałkami mięsa i sera.
+                        </p>
+                      </article>
+                    ),
+                    Łabędź: (
+                      <article>
+                        <p>Łabędzie są roślinożerne.</p>
+                        <p>
+                          Można dokarmiać je zbożem oraz surowymi bądź
+                          gotowanymi bez soli, drobno pokrojonymi warzywami.
+                        </p>
+                      </article>
+                    ),
+                  }[selected]
+                }
+              </div>
+            )}
+          </>
+        ) : (
+          <div className="splash">
+            <div>
+              <img src={viteLogo} className="logo" alt="Vite logo" />
+            </div>
+            <h1>Teachable Machine Image Model</h1>
+            <button type="button" disabled={started} onClick={onStart}>
+              {started ? "Loading..." : "Start"}
+            </button>
           </div>
-          <h1>Teachable Machine Image Model</h1>
-          <button type="button" disabled={started} onClick={onStart}>
-            {started ? "Loading..." : "Start"}
-          </button>
-        </div>
-      )}
+        )}
+      </div>
     </>
   );
 }
