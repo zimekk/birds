@@ -220,7 +220,7 @@ importers:
         version: 19.3.0(@types/react@19.3.0)
       '@vitejs/plugin-react':
         specifier: ^6.0.0
-        version: 6.1.1(vite@8.3.1(@types/node@26.1.0)(jiti@2.6.1)(yaml@2.9.0))
+        version: 6.1.1(vite@8.3.2(@types/node@26.1.0)(jiti@2.6.1)(yaml@2.9.0))
       eslint:
         specifier: ^10.0.0
         version: 10.11.0(jiti@2.6.1)(supports-color@7.2.0)
@@ -229,7 +229,7 @@ importers:
         version: 7.0.2
       vite:
         specifier: ^8.0.0
-        version: 8.3.1(@types/node@26.1.0)(jiti@2.6.1)(yaml@2.9.0)
+        version: 8.3.2(@types/node@26.1.0)(jiti@2.6.1)(yaml@2.9.0)
 
   packages/eslint-config:
     dependencies:
@@ -1571,8 +1571,8 @@ packages:
   uri-js@4.4.1:
     resolution: {integrity: sha512-7rKUyy33Q1yc98pQ1DAmLtwX109F7TIfWlW1Ydo8Wl1ii1SeHieeh0HHfPeL2fMXK6z0s8ecKs9frCuLJvndBg==}
 
-  vite@8.3.1:
-    resolution: {integrity: sha512-/bvH9E9tmCXRGp2uXY3WbOldqpTwFkbha/8ANaEQ6VkxhH60KyqLwgZq6lG2y+4uT55x9+9eUHMpQ7uGnOCKjA==}
+  vite@8.3.2:
+    resolution: {integrity: sha512-SQr1x6W5vVSbROg7vsyXIaxK9b0G7zsT68acdWWRmnBUsgDieLCRG+Rep9WdZgcposvv/GSnr4GUUBqB3vXq6w==}
     engines: {node: ^20.19.0 || >=22.12.0}
     hasBin: true
     peerDependencies:
@@ -2188,10 +2188,10 @@ snapshots:
   '@typescript/typescript-win32-x64@7.0.2':
     optional: true
 
-  '@vitejs/plugin-react@6.1.1(vite@8.3.1(@types/node@26.1.0)(jiti@2.6.1)(yaml@2.9.0))':
+  '@vitejs/plugin-react@6.1.1(vite@8.3.2(@types/node@26.1.0)(jiti@2.6.1)(yaml@2.9.0))':
     dependencies:
       '@rolldown/pluginutils': 1.0.1
-      vite: 8.3.1(@types/node@26.1.0)(jiti@2.6.1)(yaml@2.9.0)
+      vite: 8.3.2(@types/node@26.1.0)(jiti@2.6.1)(yaml@2.9.0)
 
   '@webgpu/types@0.1.38': {}
 
@@ -2880,7 +2880,7 @@ snapshots:
     dependencies:
       punycode: 2.3.1
 
-  vite@8.3.1(@types/node@26.1.0)(jiti@2.6.1)(yaml@2.9.0):
+  vite@8.3.2(@types/node@26.1.0)(jiti@2.6.1)(yaml@2.9.0):
     dependencies:
       lightningcss: 1.33.0
       picomatch: 4.0.7
